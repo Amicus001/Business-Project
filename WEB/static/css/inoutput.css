@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    background: 
+        linear-gradient(to left, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #fce9e9, #ffb6b6e4, #f44646b2), /* 현재 배경 */
+        repeating-linear-gradient(45deg, rgba(128, 128, 128, 0.5), rgba(128, 128, 128, 0.5) 10px, transparent 10px, transparent 20px); /* 투명한 회색의 삐뚤어진 빗금 */
+    position: relative; 
+}
+.upload-box {
+    width: 50%;
+    height: 55%;
+    border: 3px dashed #ccc;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    position: fixed; /* 고정 위치로 설정 */
+    bottom: 25%; /* 아래 여백 조정 */
+    right: 8%; /* 오른쪽 여백 조정 */
+    z-index: 999; /* 다른 요소 위에 나타나도록 설정 */
+}
+.upload-icon{
+    max-width: 20%;
+}
+.upload-box input[type="file"] {
+    display: none;
+}
+.upload-text {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+.upload-restrictions {
+    font-size: 14px;
+    color: #666;
+}
+.hidden-button {
+    background: none; /* 버튼 배경 제거 */
+    border: none; /* 버튼 테두리 제거 */
+    padding: 0; /* 버튼 패딩 제거 */
+    margin: 0; /* 버튼 마진 제거 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+    width: 80px;
+    height: 40px;
+    position: absolute;
+    bottom: -60px; /* 버튼을 박스 아래로 30px 내림 */
+    left: 5%;
+    transform: translateX(-50%); /* 가운데 정렬 */
+  }
+.upload-button {
+    width: 160; /* 버튼의 너비를 조절하세요 */
+    height: 80px; /* 버튼의 높이를 조절하세요 */
+    bottom: -90px; /* 사각형 박스 아래로 30px 떨어뜨림 */
+    bottom: -45px; /* 버튼을 박스 아래로 30px 내림 */
+    left: 10%;
+}
+.back-button{
+    top: 30px;
+    left: 30px;
+    position: absolute;
+}
+.back-icon {
+    max-width: 28%;
+}

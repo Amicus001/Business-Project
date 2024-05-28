@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De-identification</title>
+    <link href="{{ url_for('static', filename='css/inoutput.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- 뒤로 가기 버튼 -->
+    <a href="{{ url_for('index') }}" class="back-button">
+        <img src="{{ url_for('static', filename='img/censored.png') }}" alt="Back" class="back-icon"></a>
+        
+        <!--업로드 박스(회색 영역)-->
+        <div class="upload-box" id="uploadBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
+            <form id="upload-form" action="/input/" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" id="file">
+                <label for="file">
+                    <img src="{{ url_for('static', filename='img/upload.png') }}" class="upload-icon">
+                    <div class="upload-box" id="uploadBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
+                        <div class="upload-text">Click or Drag files here to upload videos</div>
+                        <div class="upload-restrictions">Only mp4 files can be uploaded</div>
+                    </div>
+                </label>
+            
+                <!--제출 버튼-->
+                <input type="submit" class="hidden-button" onclick="startDeIdentification(event)">
+                    <img src="{{ url_for('static', filename='img/upload_button.png') }}" alt="Upload" class="upload-button">
+                </input>
+            </form>            
+            <!-- <script>
+                document.getElementById('file').onsubmit = function() {
+                    if (document.getElementById('file').value == '') {
+                        alert('Please select a file to upload');
+                        return false;}
+                    elif (!document.getElementById('file').value.endsWith('.mp4')) {
+                        alert('Only mp4 files can be uploaded');
+                        return false;}
+                    }
+
+                    var form = document.getElementById('upload-form');
+                    var formData = new FormData(form);
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/output/', true);
+                    xhr.send(formData);
+                    
+
+
+                    function startDeIdentification(event) {
+            event.preventDefault();
+            document.querySelector('.upload-button').style.display = 'none';
+            document.querySelector('.progress-bar').style.display = 'block';
+            document.querySelector('.loading-gif').style.display = 'block';
+            document.querySelector('.upload-text').style.display = 'none';
+            document.querySelector('.upload-restrictions').style.display = 'none';
+
+            // 프로그레스 바 애니메이션 시뮬레이션
+            var progress = 0;
+            var interval = setInterval(function() {
+                progress += 10;
+                document.querySelector('.progress').style.width = progress + '%';
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    // 완료 후 추가 작업 수행
+                    document.getElementById('upload-form').submit();
+                }
+            }, 500);
+        }
+            </script> -->
+        </div>   
+</body>
+</html>
