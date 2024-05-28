@@ -9,12 +9,5 @@ def create_app():
         return render_template('index.html')
 
     app.register_blueprint(main_views.databp)    
-    # @app.route('/input/')
-    # def input_data():
-    #     return render_template('input.html')
-
-    # @app.route('/input/result/')
-    # def ouput_data():
-    #     return render_template('output.html')
 
     return app
