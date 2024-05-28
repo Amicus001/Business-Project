@@ -9,26 +9,26 @@
 <body>
     <!-- 뒤로 가기 버튼 -->
     <a href="{{ url_for('index') }}" class="back-button">
-        <img src="{{ url_for('static', filename='img/team_logo.png') }}" alt="Back" class="back-icon"></a>
+        <img src="{{ url_for('static', filename='img/team_logo.png') }}" alt="Back" class="back-icon">
+    </a>
         
-        <!--업로드 박스(회색 영역)-->
-        <div class="upload-box" id="uploadBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
-            <form id="upload-form" action="/input/" method="post" enctype="multipart/form-data">
-                <input type="file" name="file" id="file">
-                <label for="file">
-                    <img src="{{ url_for('static', filename='img/upload.png') }}" class="upload-icon">
-                    <div class="upload-box" id="uploadBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
-                        <div class="upload-text">Click or Drag files here to upload videos</div>
-                        <div class="upload-restrictions">Only mp4 files can be uploaded</div>
-                    </div>
-                </label>
+    <!--업로드 박스(회색 영역)-->
+    <div class="upload-box" id="uploadBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
+        <form id="upload-form" action="/input/" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="file" accept="video/mp4" multiple style="display:none;">
+            <label for="file">
+                <img src="{{ url_for('static', filename='img/upload.png') }}" class="upload-icon">
+                <div class="upload-text">Click or Drag files here to upload videos</div>
+                <div class="upload-restrictions">Only mp4 files can be uploaded</div>
+                <div class="upload-text" id="uploadText">Click or Drag files here to upload videos</div>
+            </label>
+            <script src="{{ url_for('static', filename='js/script.js') }}"></script>
             
-                <!--제출 버튼-->
-                <input type="submit" class="hidden-button" onclick="startDeIdentification(event)">
-                    <img src="{{ url_for('static', filename='img/upload_button.png') }}" alt="Upload" class="upload-button">
-                </input>
-            </form>            
-           
-        </div>   
+            <!--제출 버튼-->
+            <button type="submit" class="hidden-button" onclick="startDeIdentification(event)">
+                <img src="{{ url_for('static', filename='img/upload_button.png') }}" alt="Upload" class="upload-button">
+            </button>
+        </form>            
+    </div>   
 </body>
 </html>

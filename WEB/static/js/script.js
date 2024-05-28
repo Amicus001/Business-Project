@@ -1,60 +1,79 @@
-const dragArea=document.querySelector('.drag-area')
+const dragArea = document.querySelector('.drag-drop-area');
+const fileInput = document.getElementById('fileInput');
 const dragText = document.querySelector('.header');
+const uploadText = document.getElementById('uploadText'); // 추가: 업로드 텍스트를 표시할 요소
 
 let button = document.querySelector('.button');
 let input = document.querySelector('input');
+
+function dragOverHandler(event) {
+    event.preventDefault();
+    dragArea.classList.add('drag-over');
+}
+
+function dropHandler(event) {
+    event.preventDefault();
+    dragArea.classList.remove('drag-over');
+    const files = event.dataTransfer.files;
+    handleFiles(files);
+    displayFileNames(files); // 추가: 파일명을 표시하는 함수 호출
+}
+
+function handleFiles(files) {
+    for (const file of files) {
+        if (file.type !== 'video/mp4') {
+            alert('Only mp4 files can be uploaded');
+            return;
+        }
+    }
+}
+
+function displayFileNames(files) {
+    let fileNames = [];
+    for (const file of files) {
+        fileNames.push(file.name);
+    }
+    if (fileNames.length > 0) {
+        uploadText.innerHTML = fileNames.join('<br>');
+    } else {
+        uploadText.innerHTML = 'Click or Drag files here to upload videos';
+    }
+}
+
+dragArea.addEventListener('click', () => {
+    fileInput.click();
+});
+
+fileInput.addEventListener('change', (event) => {
+    const files = event.target.files;
+    handleFiles(files);
+    displayFileNames(files); // 추가: 파일명을 표시하는 함수 호출
+});
 
 let file;
 button.onclick = () => {
     input.click();
 };
 
-//브라우저 창이 열리면
-input.addEventListener('change', function(){
+input.addEventListener('change', function () {
     file = this.files[0];
-    dragArea.classList.add('active')
-    displayFile();
-})
-//파일이 드래그 에이리어 안에 있을 때
-dragArea.addEventListener('dragover',(event)=>{
-    event.preventDefault();
-    dragText.textContent = 'Release to upload';
     dragArea.classList.add('active');
-   // console.log('file in drag area');
-    });
-
-//파일이 드래그 에이리어 밖으로 나갈 때
-dragArea.addEventListener('dragleave',() =>{
-    dragText.textContent = 'Drag & Drop';
-    dragArea.classList.remove('active');
-
-    //console.log('file left the drag area');
-} );
-
-//파일이 드래그 에이리어 안에 드롭되었을 때
-dragArea.addEventListener('drop',(event)=>{
-    event.preventDefault();
-
-    file = event.dataTransfer.files[0];});
     displayFile();
+});
 
 function displayFile() {
-    let flieType = file.type;
-    let validExtensions = ['video/mp4']
-    if (validExtensions.includes(filetype)) {
-        let fileReader = new fileReader();
+    let fileType = file.type;
+    let validExtensions = ['video/mp4'];
+    if (validExtensions.includes(fileType)) {
+        let fileReader = new FileReader();
         fileReader.onload = () => {
             let fileURL = fileReader.result;
-        //let vidtag = `<img src="${fileURL}" alt="">`; //<- 업로드한 비디오를 재생하는 기능 구현해야 함.  
         };
         fileReader.readAsDataURL(file);
-    }else {
+    } else {
         alert('This filetype is not supported!');
-        dragArea.classList.remove('active')
+        dragArea.classList.remove('active');
     }
-    
-    //console.log('file dropped in the drag area');
-
-
 }
+
    

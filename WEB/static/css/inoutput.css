@@ -69,3 +69,11 @@ body {
 .back-icon {
     max-width: 28%;
 }
+
+.drag-drop-area{
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+}
+
+.drag-drop-area.drag-over {border-color: #c399e7}
