@@ -3,8 +3,9 @@ body {
     height: 100vh;
     margin: 0;
     background: 
-        linear-gradient(to left, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #fce9e9, #ffb6b6e4, #f44646b2), /* 현재 배경 */
-        repeating-linear-gradient(45deg, rgba(128, 128, 128, 0.5), rgba(128, 128, 128, 0.5) 10px, transparent 10px, transparent 20px); /* 투명한 회색의 삐뚤어진 빗금 */
+        linear-gradient(to left, #ffffff, #ffffff, #ffffff, #ffffff, #e9ebfc, #d9dcf8, #b6c7ffe4, #6c46f4b2), /* 현재 배경 */
+        url('../img/bg.jpg') no-repeat center center fixed; /* 배경 이미지 추가 */
+    background-size: auto, auto, cover; /* 각 배경의 크기 조절 */
     position: relative; 
 }
 .upload-box {
