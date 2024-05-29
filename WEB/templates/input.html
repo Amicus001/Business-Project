@@ -14,7 +14,7 @@
         
     <!--업로드 박스(회색 영역)-->
     <div class="upload-box" id="uploadBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
-        <form id="upload-form" action="/input/" method="post" enctype="multipart/form-data">
+        <form id="upload-form" action="/input/upload/" method="post" enctype="multipart/form-data">
             <input type="file" name="file" id="file" accept="video/mp4" multiple style="display:none;">
             <label for="file">
                 <img src="{{ url_for('static', filename='img/upload.png') }}" class="upload-icon">
