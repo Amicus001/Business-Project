@@ -1,22 +1,29 @@
 const dragArea = document.querySelector('.drag-drop-area');
-const fileInput = document.getElementById('fileInput');
-const dragText = document.querySelector('.header');
-const uploadText = document.getElementById('uploadText'); // 추가: 업로드 텍스트를 표시할 요소
+const fileInput = document.getElementById('file');
+const uploadText = document.getElementById('uploadText');
 
-let button = document.querySelector('.button');
-let input = document.querySelector('input');
+if (dragArea) {
+    dragArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dragArea.classList.add('drag-over');
+    });
 
-function dragOverHandler(event) {
-    event.preventDefault();
-    dragArea.classList.add('drag-over');
-}
+    dragArea.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        dragArea.classList.remove('drag-over');
+    });
 
-function dropHandler(event) {
-    event.preventDefault();
-    dragArea.classList.remove('drag-over');
-    const files = event.dataTransfer.files;
-    handleFiles(files);
-    displayFileNames(files); // 추가: 파일명을 표시하는 함수 호출
+    dragArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dragArea.classList.remove('drag-over');
+        const files = e.dataTransfer.files;
+        handleFiles(files);
+        displayFileNames(files);
+    });
+
+    dragArea.addEventListener('click', () => {
+        fileInput.click();
+    });
 }
 
 function handleFiles(files) {
@@ -36,44 +43,21 @@ function displayFileNames(files) {
     if (fileNames.length > 0) {
         uploadText.innerHTML = fileNames.join('<br>');
     } else {
-        uploadText.innerHTML = 'Click or Drag files here to upload videos';
+        uploadText.innerHTML = 'Click here or Drag files here to upload videos';
     }
 }
-
-dragArea.addEventListener('click', () => {
-    fileInput.click();
-});
 
 fileInput.addEventListener('change', (event) => {
     const files = event.target.files;
     handleFiles(files);
-    displayFileNames(files); // 추가: 파일명을 표시하는 함수 호출
+    displayFileNames(files);
 });
 
-let file;
-button.onclick = () => {
-    input.click();
-};
-
-input.addEventListener('change', function () {
-    file = this.files[0];
-    dragArea.classList.add('active');
-    displayFile();
-});
-
-function displayFile() {
-    let fileType = file.type;
-    let validExtensions = ['video/mp4'];
-    if (validExtensions.includes(fileType)) {
-        let fileReader = new FileReader();
-        fileReader.onload = () => {
-            let fileURL = fileReader.result;
-        };
-        fileReader.readAsDataURL(file);
-    } else {
-        alert('This filetype is not supported!');
-        dragArea.classList.remove('active');
-    }
+function dragOverHandler(event) {
+    event.preventDefault();
+    dragArea.classList.add('drag-over');
 }
 
-   
+function startDeIdenfitication() {
+    //모델 연결 파트
+}

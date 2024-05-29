@@ -76,4 +76,5 @@ body {
     text-align: center;
 }
 
-.drag-drop-area.drag-over {border-color: #c399e7}
+.drag-drop-area.drag-over {border-color: #c399e7;
+                           border-width: 4px;}
