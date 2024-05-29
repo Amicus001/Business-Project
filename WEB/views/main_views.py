@@ -55,12 +55,27 @@ def upload_file():
     # 디렉토리 다시 생성
     os.makedirs(upload_directory)
     
+    # 비디오 파일
     file = request.files['file']
     file_path = os.path.join(upload_directory, 'video.mp4')
 
+    # 모드 선택 : 기본값 타원 블러 
+    drop_down = request.form.get('MODE')
+    if drop_down == 'mode1':
+        mode = 1
+    elif drop_down == 'mode2':
+        mode = 2
+    elif drop_down == 'mode3':
+        mode = 3
+    elif drop_down == 'mode4':
+        mode = 4
+    else:
+        mode = 4
+
+
     file.save(file_path)
     # YOLO 모델 실행 및 결과 파일 경로 가져오기
-    result_path = run_yolo_detection(file_path) 
+    result_path = run_yolo_detection(file_path, mode) 
     # 결과 파일 경로를 URL에 인코딩하여 리다이렉트
     return redirect(url_for('DATA.output', result=result_path))
 
@@ -74,7 +89,7 @@ def encode_video(input_path, output_path):
     subprocess.run(command, check=True)
 
 # YOLO 모델 실행
-def run_yolo_detection(file_path):
+def run_yolo_detection(file_path, mode):
     name = 'de_id'
     # YOLO 결과 파일 경로: 파일 존재하면 삭제
     download_directory = os.path.join(root_dir, 'static', 'model', 'yolov5', 'runs', 'detect', name)
@@ -88,7 +103,7 @@ def run_yolo_detection(file_path):
         hide_conf=True,
         hide_labels=True,
         line_thickness=0,
-        mosaic_type=4,
+        mosaic_type=mode,
         name=name,
         conf_thres=0.5,
     )

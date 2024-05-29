@@ -15,16 +15,23 @@
     <!--업로드 박스(회색 영역)-->
     <div class="upload-box drag-drop-area" id="uploadBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
         <form id="upload-form" action="/input/upload/" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" id="file" accept="video/mp4" multiple style="display:none;">
+            <input type="file" name="file" id="file" accept="video/mp4" style="display:none;">
             <label for="file">
                 <img src="{{ url_for('static', filename='img/upload.png') }}" class="upload-icon">
-                <div class="upload-text">Click or Drag files here to upload videos</div>
-                <div class="upload-restrictions">Only mp4 files can be uploaded</div>
+                <div class="upload-text">여기를 클릭하거나 파일을 드래그하여 비디오를 업로드하세요</div>
+                <div class="upload-restrictions">MP4 파일만 업로드 가능합니다</div>
                 <br>
                 <div class="upload-text" id="uploadText"></div>
             </label>
             <script src="{{ url_for('static', filename='js/file_drag.js') }}"></script>
           
+            <select name = "MODE" id="MODE">
+                <option value="none">===Select Mode===</option>
+                <option value="mode1">사각 모자이크</option>
+                <option value="mode2">타원 모자이크</option>
+                <option value="mode3">사각 블러 </option>
+                <option value="mode4">타원 블러 </option>
+            </select>
             
 
             <!--제출 버튼-->
@@ -32,20 +39,16 @@
                 <img src="{{ url_for('static', filename='img/upload_button.png') }}" alt="Upload" class="upload-button">
             </button>
         </form> 
-        <form>
-            <select name="MODE">
-                <option value="none">===Select Mode===</option>
-                <option value="mode1">사각 모자이크</option>
-                <option value="mode2">타원 모자이크</option>
-                <option value="mode3">사각 블러 </option>
-                <option value="mode4">타원 블러 </option>
-            </select>
-        </form>
+
     </div>
     <script>
         function showLoadingPage() {
             // window.location.href = '/upload/loading';
         }
+
+        // var dropdown = document.getElementById('MODE');
+        // var value = dropdown.value;
+
     </script>
 </body>
 </html>
