@@ -6,7 +6,11 @@ import sys
 
 
 # detect.py 파일이 있는 디렉토리 경로
-detect_dir = 'C:/Users/kdp/KDT-5/WK_Project/WEB/static/model/yolov5'
+# c:\Users\kdp\KDT-5\wk_Project\WEB
+root_dir = os.path.dirname(os.path.dirname(__file__))
+
+
+detect_dir = os.path.join(root_dir, 'static', 'model', 'yolov5')
 
 # sys.path에 detect.py가 있는 디렉토리 경로를 추가
 sys.path.append(detect_dir)
@@ -34,17 +38,17 @@ def input_data():
 def upload_file():
 
     # 저장할 디렉토리
-    upload_directory = 'C:/Users/kdp/KDT-5/WK_Project/WEB/static/upload'
+    upload_directory = os.path.join(root_dir, 'static', 'upload')
     if not os.path.exists(upload_directory):
         os.makedirs(upload_directory)
 
     if 'file' not in request.files:
-        flash('No file part')
+        flash('파일 부분이 없습니다')
         return render_template('input.html')
     
     file = request.files['file']
     if file.filename == '':
-        flash('No selected file')
+        flash('선택된 파일이 없습니다')
         return render_template('input.html')
     
     if file and allowed_file(file.filename):
@@ -62,7 +66,7 @@ def upload_file():
         # 결과 파일 경로를 URL에 인코딩하여 리다이렉트
         return redirect(url_for('output', result=result_path))
     else:
-        flash('Only mp4 files are allowed')
+        flash('mp4 파일만 허용됩니다')
         return render_template('input.html')
 
 # mp4 형식만 허용하는 함수
@@ -73,13 +77,13 @@ def allowed_file(filename):
 def run_yolo_detection(file_path):
     name = 'de_id'
 
-    download_directory = 'C:/Users/kdp/KDT-5/WK_Project/WEB/static/download'
+    download_directory = os.path.join(root_dir, 'static', 'download')
     if not os.path.exists(download_directory):
         os.makedirs(download_directory)
 
     # YOLOv5 모델 실행
     run(
-        weights="C:/Users/kdp/KDT-5/WK_Project/WEB/static/model/yolov5/runs/train/face_16k/weights/best.pt",
+        weights=os.path.join(root_dir, 'static', 'model', 'yolov5', 'runs', 'train', 'face_16k', 'weights', 'best.pt'),
         source=file_path,
         hide_conf=True,
         hide_labels=True,
@@ -101,9 +105,9 @@ def output():
 
     if result_path:
         # 결과 동영상 파일을 다운로드할 수 있도록 함
-        return send_file(result_path, as_attachment=True)
+        return render_template('output.html', result=result_url)
     else:
-        return 'No result path provided'
+        return  flash('결과를 찾을 수 없습니다')
 
 
 

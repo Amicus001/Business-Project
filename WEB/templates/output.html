@@ -10,9 +10,19 @@
     <!-- 뒤로 가기 버튼 -->
     <a href="{{ url_for('index') }}" class="back-button">
         <img src="{{ url_for('static', filename='img/team_logo.png') }}" alt="Back" class="back-icon"></a>
-        
-                       
-           
+        <!doctype html>
+
+
+    <h1>YOLO 감지 결과</h1>
+    {% if result %}
+        <video width="640" height="480" controls>
+            <source src="{{ result }}" type="video/mp4">
+            브라우저가 비디오 태그를 지원하지 않습니다.
+        </video>
+    {% else %}
+        <p>표시할 결과가 없습니다.</p>
+    {% endif %}
+
         </div>   
 </body>
 </html>
