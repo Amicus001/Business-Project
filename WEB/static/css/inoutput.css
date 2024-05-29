@@ -59,7 +59,7 @@ body {
     height: 80px; /* 버튼의 높이를 조절하세요 */
     bottom: -90px; /* 사각형 박스 아래로 30px 떨어뜨림 */
     bottom: -45px; /* 버튼을 박스 아래로 30px 내림 */
-    left: 10%;
+    left: 2%;
 }
 .back-button{
     top: 30px;
@@ -67,5 +67,38 @@ body {
     position: absolute;
 }
 .back-icon {
-    max-width: 28%;
+    width: 28%; /* 이미지 크기를 고정 크기로 설정 */
 }
+
+.drag-drop-area{
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+}
+
+.drag-drop-area.drag-over {border-color: #c399e7;
+                           border-width: 3px;}
+
+.center-alpha {
+    display: flex;
+    justify-content: center;
+    height: 100vh; /* 화면 세로 크기 만큼 사각형이 채워지도록 설정 */
+    width: 40vw; /* 화면 가로 크기의 절반만큼의 너비를 가짐 */
+    background-color: rgba(165, 137, 235, 0.034); /* 파란색의 투명도 있는 배경 */
+}
+
+.video-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.download-button {
+    width: 160px; /* 버튼의 너비를 조절하세요 */
+    height: 80px; /* 버튼의 높이를 조절하세요 */
+    margin-top: 20px; /* 버튼 위쪽 여백 설정 */
+}
+
+                        
+                        

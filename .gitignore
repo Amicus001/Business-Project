@@ -160,3 +160,4 @@ WEB/static/model/yolov5/utils/segment/metrics.py
 WEB/static/model/yolov5/utils/segment/plots.py
 WEB/static/model/yolov5/de_identification.py
 WEB/static/model/yolov5/sort.py
+WEB/static/upload/upload_vedio.mp4

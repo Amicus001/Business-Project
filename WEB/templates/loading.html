@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-********" crossorigin="anonymous" />
+    <link href="{{ url_for('static', filename='css/inoutput.css') }}" rel="stylesheet">
+    <title>Loading...</title>
+</head>
+
+<body>
+     <!-- 뒤로 가기 버튼 -->
+     <a href="{{ url_for('index') }}" class="back-button">
+        <img src="{{ url_for('static', filename='img/team_logo.png') }}" alt="Back" class="back-icon">
+    </a>
+    <!--업로드 박스(회색 영역)-->
+    <div class="upload-box drag-drop-area" id="uploadBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
+        <form id="upload-form" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="file" accept="video/mp4" multiple style="display:none;">
+            <label for="file">
+                <i class="fas fa-circle-notch fa-spin fa-7x" style="color: #633af8"></i>
+                <br>
+                <div class="loading-text" id="uploadText">Processing...</div>
+            </label>
+
+            <button class="hidden-button" id="startButton">
+                <img src="{{ url_for('static', filename='img/upload_button_no.png') }}" alt="Upload" class="upload-button">
+            </button>
+        </form> 
+        <script>
+            // 업로드 버튼 클릭 시 처리
+            document.getElementById("startButton").addEventListener("click", function() {
+                // 업로드 시작 메시지 표시
+                document.getElementById("uploadText").innerText = "Uploading... Please wait.";
+            });
+            settimeout(() => {
+                window.location.href = '/result';
+            }, 10000);
+        </script>
+</body>
+</html>

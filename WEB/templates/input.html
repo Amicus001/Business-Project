@@ -11,25 +11,41 @@
     <a href="{{ url_for('index') }}" class="back-button">
         <img src="{{ url_for('static', filename='img/team_logo.png') }}" alt="Back" class="back-icon">
     </a>
-        
+
     <!--업로드 박스(회색 영역)-->
-    <div class="upload-box" id="uploadBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
+    <div class="upload-box drag-drop-area" id="uploadBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
         <form id="upload-form" action="/input/upload/" method="post" enctype="multipart/form-data">
             <input type="file" name="file" id="file" accept="video/mp4" multiple style="display:none;">
             <label for="file">
                 <img src="{{ url_for('static', filename='img/upload.png') }}" class="upload-icon">
-
                 <div class="upload-text">Click or Drag files here to upload videos</div>
                 <div class="upload-restrictions">Only mp4 files can be uploaded</div>
+                <br>
+                <div class="upload-text" id="uploadText"></div>
             </label>
-            <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-            <p class="preview-title">preview</p>
-            <div class="preview" id="preview"></div>
+            <script src="{{ url_for('static', filename='js/file_drag.js') }}"></script>
+          
+            
+
             <!--제출 버튼-->
-            <button type="submit" class="hidden-button">
+            <button type="submit" class="hidden-button" id="startButton">
                 <img src="{{ url_for('static', filename='img/upload_button.png') }}" alt="Upload" class="upload-button">
             </button>
-        </form>            
-    </div>   
+        </form> 
+        <form>
+            <select name="MODE">
+                <option value="none">===Select Mode===</option>
+                <option value="mode1">사각 모자이크</option>
+                <option value="mode2">타원 모자이크</option>
+                <option value="mode3">사각 블러 </option>
+                <option value="mode4">타원 블러 </option>
+            </select>
+        </form>
+    </div>
+    <script>
+        function showLoadingPage() {
+            // window.location.href = '/upload/loading';
+        }
+    </script>
 </body>
 </html>
