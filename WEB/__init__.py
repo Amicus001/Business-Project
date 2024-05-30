@@ -3,6 +3,7 @@ from .views import main_views
 
 def create_app():
     app = Flask(__name__)
+    app.secret_key = '00'
 
     @app.route('/')
     def index():
