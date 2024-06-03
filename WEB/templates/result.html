@@ -20,9 +20,8 @@
                     <video id="videoPlayer" controls autoplay loop muted style="max-width: 500px; height: 500px;">
                         <source src="{{ url_for('static', filename='download/de_video.mp4') }}" type="video/mp4">
                     </video>
-                    <br>
                     <a href="{{ url_for('static', filename='download/de_video.mp4') }}" download>
-                        <img src="{{ url_for('static', filename='img/download_button.jpg') }}" alt="Download" class="download-button">
+                        <img id="downloadImage" src="{{ url_for('static', filename='img/download_button.png') }}" alt="Download" class="download-button" onmouseover="changeDownloadImage('over')" onmouseout="changeDownloadImage('out')">
                     </a>
                     
                 {% else %}
@@ -55,11 +54,21 @@
         function changeImage(action) {
         var imgElement = document.getElementById('backImage');
         if (action === 'over') {
-            imgElement.src = "{{ url_for('static', filename='img/team_logo_purple.png') }}";
+            imgElement.src = "{{ url_for('static', filename='img/team_logo_white.png') }}";
         } else if (action === 'out') {
             imgElement.src = "{{ url_for('static', filename='img/team_logo.png') }}";
         }
     }
+
+    function changeDownloadImage(action) {
+            var imgElement = document.getElementById('downloadImage');
+            if (action === 'over') {
+                imgElement.src = "{{ url_for('static', filename='img/download_button_sh.png') }}"; // 호버 시 이미지 경로로 변경
+            } else if (action === 'out') {
+                imgElement.src = "{{ url_for('static', filename='img/download_button.png') }}"; // 원래 이미지 경로로 변경
+            }
+        }
+
     </script>
     
 </body>

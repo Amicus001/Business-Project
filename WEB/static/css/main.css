@@ -3,13 +3,11 @@ body {
     height: 100vh;
     margin: 0;
     background: 
-        linear-gradient(to left, #ffffff, #ffffff, #ffffff, #ffffff, #e9ebfc, #d9dcf8, #b6c7ffe4, #6c46f4b2), /* 현재 배경 */
-        url('../img/bg.jpg') no-repeat center center fixed; /* 배경 이미지 추가 */
-    background-size: auto, auto, cover; /* 각 배경의 크기 조절 */
+        linear-gradient(to left, #ffffff, #ffffff, #ffffff, #ffffff, #e9ebfc, #d9dcf8, #b6c7ffe4, #6c46f4b2),
+        url('../img/bg_moving.gif') repeat center center fixed;
+    background-size: cover, cover; /* 각 배경의 크기 조절 */
     position: relative; 
 }
-
-
 
 h1 {
     color: #3a3a3a;
@@ -34,13 +32,13 @@ h1 {
     left: 50%;
     transform: translateX(-50%);
 }
+
 .start-button {
-    width: 10%; 
+    width: 15%; 
     position: absolute;
     top: 50%;
-    right: 15%;
+    right: 10%;
     transform: translateY(-60%);
-
 }
 
 

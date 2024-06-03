@@ -3,39 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-********" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-Nf6l9pEycvaywCJwvWTDeXQsVr2/+T4hWl2ZB/a4eB1ijQi6xNzT/6NQqOf/1kjvs9yhd7IvLsbxC0JdLqME2w==" crossorigin="anonymous" />
     <link href="{{ url_for('static', filename='css/inoutput.css') }}" rel="stylesheet">
     <title>Loading...</title>
+    <style>
+        .upload-box {
+            text-align: center; /* 아이콘을 가운데 정렬 */
+            margin-top: 20px; /* 여백 추가 */
+        }
+    </style>
 </head>
-
 <body>
-     <!-- 뒤로 가기 버튼 -->
-     <a href="{{ url_for('index') }}" class="back-button">
+    <!-- 뒤로 가기 버튼 -->
+    <a href="{{ url_for('index') }}" class="back-button">
         <img src="{{ url_for('static', filename='img/team_logo.png') }}" alt="Back" class="back-icon">
     </a>
-    <!--업로드 박스(회색 영역)-->
-    <div class="upload-box drag-drop-area" id="uploadBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
-        <form id="upload-form" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" id="file" accept="video/mp4" multiple style="display:none;">
-            <label for="file">
-                <i class="fas fa-circle-notch fa-spin fa-7x" style="color: #633af8"></i>
-                <br>
-                <div class="loading-text" id="uploadText">Processing...</div>
-            </label>
+    <!-- 로딩 아이콘 -->
+    <div class="upload-box">
+        <i class="fas fa-circle-notch fa-spin fa-7x" style="color: #633af8"></i>
+        <br>
+        <div class="loading-text">Processing...</div>
+    </div>
+    <script>
+        function checkStatus(){
+            fetch('/input/upload/is_complete')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "complete") {
+                        window.location.href = "{{ url_for('DATA.output', result=download_file_path) }}";
+                    } else {
+                        setTimeout(checkStatus, 3000); // 3초 뒤에 다시 상태 확인
+                    }
+                });
+        }
 
-            <button class="hidden-button" id="startButton">
-                <img src="{{ url_for('static', filename='img/upload_button_no.png') }}" alt="Upload" class="upload-button">
-            </button>
-        </form> 
-        <script>
-            // 업로드 버튼 클릭 시 처리
-            document.getElementById("startButton").addEventListener("click", function() {
-                // 업로드 시작 메시지 표시
-                document.getElementById("uploadText").innerText = "Uploading... Please wait.";
-            });
-            settimeout(() => {
-                window.location.href = '/result';
-            }, 10000);
-        </script>
+        // 처음 상태 확인하기
+        checkStatus();
+    </script>
 </body>
 </html>

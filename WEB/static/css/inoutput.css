@@ -4,7 +4,7 @@ body {
     margin: 0;
     background: 
         linear-gradient(to left, #ffffff, #ffffff, #ffffff, #ffffff, #e9ebfc, #d9dcf8, #b6c7ffe4, #6c46f4b2), /* 현재 배경 */
-        url('../img/bg.jpg') no-repeat center center fixed; /* 배경 이미지 추가 */
+        url('../img/bg.jpg') repeat center center fixed; /* 배경 이미지 추가 */
     background-size: auto, auto, cover; /* 각 배경의 크기 조절 */
     position: relative; 
 }
@@ -25,6 +25,13 @@ body {
     bottom: 25%; /* 아래 여백 조정 */
     right: 8%; /* 오른쪽 여백 조정 */
     z-index: 999; /* 다른 요소 위에 나타나도록 설정 */
+}
+.controls{
+    text-align: center;
+    margin-top: 20px;
+}
+.controls select, .controls button {
+    margin: 10px;
 }
 .upload-icon{
     max-width: 20%;
@@ -55,19 +62,19 @@ body {
     transform: translateX(-50%); /* 가운데 정렬 */
   }
 .upload-button {
-    width: 160; /* 버튼의 너비를 조절하세요 */
-    height: 80px; /* 버튼의 높이를 조절하세요 */
+    /* width: 200; /* 버튼의 너비를 조절하세요 */
+    height: 120px; /* 버튼의 높이를 조절하세요 */
     bottom: -90px; /* 사각형 박스 아래로 30px 떨어뜨림 */
     bottom: -45px; /* 버튼을 박스 아래로 30px 내림 */
-    left: 2%;
+    left: 3%;
 }
 .back-button{
-    top: 30px;
-    left: 30px;
+    top: 40px;
+    left: 40px;
     position: absolute;
 }
 .back-icon {
-    width: 28%; /* 이미지 크기를 고정 크기로 설정 */
+    width: 40%; /* 이미지 크기를 고정 크기로 설정 */
 }
 
 .drag-drop-area{
@@ -95,10 +102,15 @@ body {
 }
 
 .download-button {
-    width: 160px; /* 버튼의 너비를 조절하세요 */
-    height: 80px; /* 버튼의 높이를 조절하세요 */
+    width: 200px; /* 버튼의 너비를 조절하세요 */
+    height: 150px; /* 버튼의 높이를 조절하세요 */
     margin-top: 20px; /* 버튼 위쪽 여백 설정 */
 }
 
-                        
-                        
+.preview {
+    color: rgb(156, 154, 162);
+    font-size: 27px;
+    margin-top: 3px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
